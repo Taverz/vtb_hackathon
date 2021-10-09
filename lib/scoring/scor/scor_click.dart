@@ -90,27 +90,39 @@ void _scropeType(TypeClick type) async {
 
 _analize(Result res) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  List<Map<String, int>> map = [];
+  // List<Map<String, int>> map = [];
+  int rating = 0;
   switch(res){
     case Result.Difficulties:
       for (var value in TypeClick.values) {
         int get = prefs.getInt(value.toString())!;
-         map.add(_ret(value, get)) ;
+         rating = _ret(value, get) ;
       }
       break;
     case Result.Interest:
-      
+       for (var value in TypeClick.values) {
+        int get = prefs.getInt(value.toString())!;
+        rating =  _ret(value, get) ;
+      }
       break;
     case Result.Desire:
-      
+       for (var value in TypeClick.values) {
+        int get = prefs.getInt(value.toString())!;
+        rating = _ret(value, get) ;
+      }
       break;
     case Result.StartEaseLevel:
-   
+    for (var value in TypeClick.values) {
+        int get = prefs.getInt(value.toString())!;
+        rating = _ret(value, get) ;
+      }
       break;
   }
+  
 }
 
-Map<String, int> _ret(TypeClick even , int count)  {
+// Map<String, int>
+int  _ret(TypeClick even , int count)  {
    int val = 1;
    String ss = "";
 
@@ -153,8 +165,8 @@ Map<String, int> _ret(TypeClick even , int count)  {
       val = (count / 100)* -1 as int  ;
       break;
   }
-  Map<String, int> map = {ss: val};
-  return map;
+  // Map<String, int> map = {ss: val};
+  return val;
 }
 
 enum Result{

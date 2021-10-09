@@ -1,0 +1,165 @@
+
+
+// Откуда нажатие
+// Тип наажатия
+// 
+
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+enum TypeClick{
+  Link, //ссылки ВТБ
+  Question, // вопросы
+  Info, // просмотр доп инвормации
+  PageCount, // страницы - здесь собриаем количество
+  //typePage- типы страниц, 
+  Page1,
+  Page2,
+
+  //type Game -типы игр , можно сюжетов
+  Game1,
+  Game2,
+
+  Rewarding, //Награждение - медальки, достижения, награды, плюшки, 
+  Notification, // уведомление - 
+
+  EventTimerStart,
+  EventTimerEnd
+}
+
+
+void analitEventClick(TypeClick event){
+  switch(event){
+    
+    case TypeClick.Link:
+     
+      _scropeType(TypeClick.Link);
+      break;
+    case TypeClick.Question:
+  
+       _scropeType(TypeClick.Question);
+      break;
+    case TypeClick.Info:
+    
+       _scropeType(TypeClick.Info);
+      break;
+    case TypeClick.PageCount:
+       _scropeType(TypeClick.PageCount);
+      break;
+    case TypeClick.Page1:
+    
+       _scropeType(TypeClick.Page1);
+      break;
+    case TypeClick.Page2:
+      
+       _scropeType(TypeClick.Page2);
+      break;
+    case TypeClick.Game1:
+     
+       _scropeType(TypeClick.Game1);
+      break;
+    case TypeClick.Game2:
+      
+       _scropeType(TypeClick.Game2);
+      break;
+    case TypeClick.Rewarding:
+     
+       _scropeType(TypeClick.Rewarding);
+      break;
+    case TypeClick.Notification:
+      
+       _scropeType(TypeClick.Notification);
+      break;
+    // case TypeClick.EventTimerStart:
+    // 
+    //   break;
+    // case TypeClick.EventTimerEnd:
+    //   
+    //   break;
+  }
+}
+
+
+void _scropeType(TypeClick type) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int counter = (prefs.getInt(type.toString()) ?? 0) + 1;
+  print("type : "+type.toString());
+  print("counter : "+counter.toString());
+  await prefs.setInt(type.toString(), counter);
+}
+
+_analize(Result res) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  List<Map<String, int>> map = [];
+  switch(res){
+    case Result.Difficulties:
+      for (var value in TypeClick.values) {
+        int get = prefs.getInt(value.toString())!;
+         map.add(_ret(value, get)) ;
+      }
+      break;
+    case Result.Interest:
+      
+      break;
+    case Result.Desire:
+      
+      break;
+    case Result.StartEaseLevel:
+   
+      break;
+  }
+}
+
+Map<String, int> _ret(TypeClick even , int count)  {
+   int val = 0;
+   String ss = "s";
+
+  switch(even){
+    
+    case TypeClick.Link:
+      val = count;
+      break;
+    case TypeClick.Question:
+   
+      break;
+    case TypeClick.Info:
+     
+      break;
+    case TypeClick.PageCount:
+     
+      break;
+    case TypeClick.Page1:
+      
+      break;
+    case TypeClick.Page2:
+
+      break;
+    case TypeClick.Game1:
+    
+      break;
+    case TypeClick.Game2:
+  
+      break;
+    case TypeClick.Rewarding:
+     
+      break;
+    case TypeClick.Notification:
+   
+      break;
+    case TypeClick.EventTimerStart:
+   
+      break;
+    case TypeClick.EventTimerEnd:
+
+      break;
+  }
+  Map<String, int> map = {ss: val};
+  return map;
+}
+
+enum Result{
+  Difficulties,
+  Interest,
+  Desire,
+  StartEaseLevel
+}

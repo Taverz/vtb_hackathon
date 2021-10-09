@@ -111,46 +111,46 @@ _analize(Result res) async {
 }
 
 Map<String, int> _ret(TypeClick even , int count)  {
-   int val = 0;
-   String ss = "s";
+   int val = 1;
+   String ss = "";
 
   switch(even){
     
     case TypeClick.Link:
-      val = count;
+      val = count ;
       break;
     case TypeClick.Question:
-   
+      val = count * -1;
       break;
     case TypeClick.Info:
-     
+      val = count * -1;
       break;
     case TypeClick.PageCount:
-     
+      val = count * -1;
       break;
     case TypeClick.Page1:
-      
+      val = count ;
       break;
     case TypeClick.Page2:
-
+      val = count ;
       break;
     case TypeClick.Game1:
-    
+      val = count ;
       break;
     case TypeClick.Game2:
-  
+      val = count ;
       break;
     case TypeClick.Rewarding:
-     
+      val = count ;
       break;
     case TypeClick.Notification:
-   
+      val = count ;
       break;
     case TypeClick.EventTimerStart:
-   
+      val = (count / 100) as int ;
       break;
     case TypeClick.EventTimerEnd:
-
+      val = (count / 100)* -1 as int  ;
       break;
   }
   Map<String, int> map = {ss: val};
@@ -158,7 +158,7 @@ Map<String, int> _ret(TypeClick even , int count)  {
 }
 
 enum Result{
-  Difficulties,
+  Difficulties, //Трудности
   Interest,
   Desire,
   StartEaseLevel
